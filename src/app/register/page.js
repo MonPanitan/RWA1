@@ -27,9 +27,9 @@ export default function Page() {
     const data = await res.json();
 
     if (data.data == "valid") {
-      console.log("login is valid!");
+      console.log("Register is valid!");
     } else {
-      console.log("not valid ");
+      console.log("not valid  ");
     }
   }
 
@@ -47,12 +47,18 @@ export default function Page() {
 
     let email = data.get("email");
     let pass = data.get("pass");
+    let firstname = data.get("firstName");
+    let lastname = data.get("lastName");
+    let phone = data.get("phone");
 
     console.log("Sent email:" + email);
     console.log("Sent pass:" + pass);
+    console.log("Sent firstName:" + firstname);
+    console.log("Sent lastName:" + lastname);
+    console.log("Sent phone:" + phone);
 
     runDBCallAsync(
-      `http://localhost:3000/api/login?email=${email}&pass=${pass}`
+      `http://localhost:3000/api/register?lastName=${lastname}&firstName=${firstname}&phone=${phone}&email=${email}&pass=${pass}`
     );
   }; // end handler
 
@@ -78,7 +84,7 @@ export default function Page() {
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Register
           </Typography>
           <Box
             component="form"
@@ -86,6 +92,7 @@ export default function Page() {
             noValidate
             sx={{ mt: 1 }}
           >
+            {/* Email */}
             <TextField
               margin="normal"
               required
@@ -96,6 +103,8 @@ export default function Page() {
               autoComplete="email"
               autoFocus
             />
+
+            {/* Password */}
             <TextField
               margin="normal"
               required
@@ -106,28 +115,62 @@ export default function Page() {
               id="pass"
               autoComplete="current-password"
             />
-            <FormControlLabel
+            {/* First Name */}
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="firstname"
+              label="First Name"
+              name="firstName"
+              autoComplete="firstName"
+            />
+
+            {/* Last Name */}
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="lastName"
+              label="Last Name"
+              name="lastName"
+              autoComplete="lastName"
+            />
+
+            {/* Phone */}
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="phone"
+              label="Phone Number"
+              type="phoneNum"
+              id="phone"
+              autoComplete="Phone"
+            />
+
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Register
             </Button>
 
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                {/* <Link href="#" variant="body2">
                   Forgot password?
-                </Link>
+                </Link> */}
               </Grid>
               <Grid item>
-                <Link href="register" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="#" variant="body2">
+                  {"Already have an Account? Sign in"}
                 </Link>
               </Grid>
             </Grid>
