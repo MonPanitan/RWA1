@@ -22,7 +22,7 @@ export default function Page() {
   //
   function putInCart(pname) {
     console.log("putting in cart: " + pname);
-    fetch("http://localhost:3000/api/putInCart?pname=" + pname);
+    fetch("api/putInCart?pname=" + pname);
   }
 
   // function readDBcart(pname){
