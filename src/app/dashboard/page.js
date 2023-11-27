@@ -34,13 +34,13 @@ export default function Page() {
       .then((data) => {
         setData(data);
       });
-  }, []);
 
-  fetch("api/getWeather")
-    .then((res) => res.json())
-    .then((weather) => {
-      setWeatherData(weather);
-    });
+    fetch("api/getWeather")
+      .then((res) => res.json())
+      .then((weather) => {
+        setWeatherData(weather);
+      });
+  }, []);
 
   if (!data) return <p>Loading</p>;
   if (!weather) return <p>No weather available</p>;
