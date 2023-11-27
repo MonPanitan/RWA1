@@ -22,21 +22,21 @@ export default function Page() {
   //
   function putInCart(pname) {
     console.log("putting in cart: " + pname);
-    fetch("api/putInCart?pname=" + pname);
+    fetch("http://localhost:3000/api/putInCart?pname=" + pname);
   }
 
   const [data, setData] = useState(null);
   const [weather, setWeatherData] = useState(0);
 
   useEffect(() => {
-    fetch("api/getProducts")
+    fetch("http://localhost:3000/api/getProducts")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
       });
   }, []);
 
-  fetch("api/getWeather")
+  fetch("http://localhost:3000/api/getWeather")
     .then((res) => res.json())
     .then((weather) => {
       setWeatherData(weather);
